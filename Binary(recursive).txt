@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+void binary(int a[],int n,int m,int low,int high)
+{
+int i,mid;
+mid=(low+high)/2;
+while(low<high)
+{	if(m==a[mid])
+	{printf("elememt found at:%d ",mid+1);return;}
+	else
+	if(m<a[mid])
+	{binary(a,n,m,low,mid-1);
+	return;}
+	else if(m>a[mid])
+	{binary(a,n,m,mid+1,high);
+	return;}
+	else
+	printf("elememt absent");return;
+}
+}
+void main()
+{int low,high,i,a[15],n,m;
+ clrscr();
+
+printf("enter d no of elements in array");
+scanf("%d",&n);
+printf("enter the elements");
+for(i=0;i<n;i++)
+{scanf("%d",&a[i]);
+}
+printf("enter d element to b searched");
+scanf("%d",&m);
+low=0;
+high=n-1;
+binary(a,n,m,low,high);
+getch();
+}

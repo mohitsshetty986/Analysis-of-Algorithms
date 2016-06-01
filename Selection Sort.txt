@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<dos.h>
+void main()
+{
+struct time t1,t2;
+ int i,n,j,k,t;
+int a[20];
+
+ int position;
+clrscr();
+printf("Enter no of elements");
+scanf("%d",&n);
+printf("Enter the elements:");
+for(i=0;i<n;i++)
+ scanf("%d",&a[i]);
+gettime(&t1);
+ printf("The current time is: %2d:%02d:%02d.%02d\n",t1.ti_hour, t1.ti_min, t1.ti_sec, t1.ti_hund);
+
+for(i=0;i<(n-1);i++)
+{
+ position=i;
+  for(j=i+1;j<n;j++)
+   {
+     if(a[position]>a[j])
+       position=j;
+   }
+  if(position!=i)
+    {
+     t=a[i];
+     a[i]=a[position];
+     a[position]=t;
+   }
+}
+
+gettime(&t2);
+ printf("The current time is: %2d:%02d:%02d.%02d\n",
+t2.ti_hour, t2.ti_min, t2.ti_sec, t2.ti_hund);
+for(i=0;i<n;i++)
+ printf("%d",a[i]);
+
+getch();
+}

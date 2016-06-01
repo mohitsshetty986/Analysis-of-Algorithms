@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<conio.h>
+int a[10],n;
+void nqueen(int m,int n)
+{
+int i,j;
+for(i=1;i<=n;i++)
+{
+if(col(m,i))
+{ a[m]=i;
+if(m==n)
+{ for(j=1;j<=n;j++)
+ printf("%d\t",a[j]); printf("\n");}
+else
+nqueen(m+1,n);
+}
+}
+}
+int col(int m,int i)
+{
+int j;
+for(j=1;j<m;j++)
+if((a[j]==i)||(abs(a[j]-i)==abs(j-m)))
+return(0);
+return(1);
+}
+int main()
+{
+int i;
+clrscr();
+printf("Enter the size of matrix:");
+scanf("%d",&n);
+nqueen(1,n);
+getch();
+}
+
+
+
+
+
+
+
+
+
+

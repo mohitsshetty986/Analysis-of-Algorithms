@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<conio.h>
+#include<dos.h>
+#include<stdlib.h>
+int max, min;
+int a[100];
+void maxmin(int i, int j)
+{
+	int max1, min1, mid;
+	if(i==j)
+	{
+		max = min = a[i];
+	}
+	else
+	{
+		if(i == j-1)
+		{
+			if(a[i] <a[j])
+			{
+				max = a[j];
+				min = a[i];
+			}
+			else
+			{
+				max = a[i];
+				min = a[j];
+			}
+		}
+		else
+		{
+			mid = (i+j)/2;
+			maxmin(i, mid);
+			max1 = max;	min1 = min;
+			maxmin(mid+1, j);
+			if(max <max1)
+				max = max1;
+			if(min > min1)
+				min = min1;
+		}
+	}
+}
+void main ()
+{       struct time t1,t2;
+	int i, num;
+	clrscr();
+	printf ("\nEnter the total length : ");
+	scanf ("%d",&num);
+       //	printf ("Enter the numbers : \n");
+	for (i=1;i<=num;i++)
+	{
+	  //	scanf ("%d",&a[i]);
+	a[i]=rand();
+	}
+
+	//max = a[0];
+	//min = a[0];
+	gettime(&t1);
+	maxmin(1, num);
+	gettime(&t2);
+	printf ("Maximum element in an array : %d\n", max);
+	printf ("Minimum element in an array : %d\n", min);
+	printf("The current time is: %2d:%02d:%02d.%02d\n",
+	t1.ti_hour, t1.ti_min, t1.ti_sec, t1.ti_hund);
+	printf("The current time is: %2d:%02d:%02d.%02d\n",
+	t2.ti_hour, t2.ti_min, t2.ti_sec, t2.ti_hund);
+	getch();
+}
